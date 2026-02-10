@@ -1,19 +1,57 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'hotel_app/styles.css' %}">
-  </head>
-  <body>
-    <button><a href="{% url 'user_logi' %}">Login</a></button>
 
-    <form action="{% url 'user_regi' %}" method="post">
-      {% csrf_token %} {{form.as_p}}
-      <button type="submit">Register</button>
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Hotel App</title>
+
+  <link rel="stylesheet" href="{% static 'hotel_app/css/styles.css' %}">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Hotel<span>App</span></div>
+    <a href="{% url 'user_logi' %}" class="login-btn">Sign In</a>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div class="card">
+      <h2>Create account</h2>
+
+      <form action="{% url 'user_regi' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="primary-btn">
+          Create your HotelApp account
+        </button>
+      </form>
+
+      <p class="terms">
+        By creating an account, you agree to HotelApp's
+        <a href="#">Conditions of Use</a> and
+        <a href="#">Privacy Notice</a>.
+      </p>
+
+      <hr />
+
+      <p class="login-link">
+        Already have an account?
+        <a href="{% url 'user_logi' %}">Sign in</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 HotelApp. All rights reserved.</p>
+  </footer>
+
+</body>
+
 </html>

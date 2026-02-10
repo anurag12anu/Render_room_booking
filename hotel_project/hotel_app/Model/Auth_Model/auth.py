@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import make_password
 class Auth_user(models.Model):
     username=models.CharField(max_length=50)
     email=models.EmailField(unique=True)
-    password=models.CharField()
+    password=models.CharField(max_length=100)
     
     def save(self,*args,**kargs):
         if not self.password.startswith('pdfdk_2'):

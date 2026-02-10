@@ -1,27 +1,52 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'hotel_app/styles.css' %}">
-  </head>
-  <body>
-    <h2>Room Available</h2>
-    <ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooms | Hotel App</title>
+
+  <link rel="stylesheet" href="{% static 'hotel_app/css/styles.css' %}">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">Hotel<span>App</span></div>
+  </header>
+
+  <!-- Main -->
+  <div class="container">
+    <div class="room-wrapper">
+      <h2 class="page-title">Available Rooms</h2>
+
+      <div class="room-grid">
         {% for room in rooms %}
-        <li>
-            {{ room.room_number }}
-            {{ room.category.name }}
-            {% if room.is_available %}
-                <a href="{% url 'room_book' room.id %}"> Book </a>
-                {% else %}
-                    <span> Booked</span>
-            {% endif %}
-        </li>
+        <div class="room-card">
+          <h3>Room {{ room.room_number }}</h3>
+
+          <p class="category">{{ room.category.name }}</p>
+
+          {% if room.is_available %}
+          <a href="{% url 'room_book' room.id %}" class="book-btn">
+            Book Now
+          </a>
+          {% else %}
+          <span class="booked-btn">Booked</span>
+          {% endif %}
+        </div>
         {% endfor %}
-    </ul>
-  </body>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 HotelApp. All rights reserved.</p>
+  </footer>
+
+</body>
+
 </html>
